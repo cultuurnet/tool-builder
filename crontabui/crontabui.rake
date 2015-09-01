@@ -2,7 +2,7 @@ namespace :crontabui do
   desc "Download the necessary sources for the version specified."
   task :download => [:clean] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      version_string = ENV['version'].nil? or ENV['version'].empty? ? "" : "@#{ENV['version']}"
+      version_string = (ENV['version'].nil? or ENV['version'].empty?) ? "" : "@#{ENV['version']}"
       system("npm install crontab-ui#{version_string}")
     }
   end

@@ -2,7 +2,7 @@ namespace :composer do
   desc "Download the necessary sources for the version specified."
   task :download => [:clean] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      version_string = ENV['version'].nil? or ENV['version'].empty? ? "" : "--version=#{ENV['version']}"
+      version_string = (ENV['version'].nil? or ENV['version'].empty?) ? "" : "--version=#{ENV['version']}"
       system("curl -sS https://getcomposer.org/installer | php -- --filename=composer #{version_string}")
     }
   end
