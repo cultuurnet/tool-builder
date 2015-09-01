@@ -18,7 +18,7 @@ namespace :crontabui do
   desc "Create a debian package from the binaries."
   task :build_package => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      require json
+      require 'json'
 
       ENV['NPM_CONFIG_DEPTH'] = '0'
       ENV['NPM_CONFIG_JSON'] = 'true'
