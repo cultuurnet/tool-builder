@@ -24,7 +24,7 @@ namespace :crontabui do
       ENV['NPM_CONFIG_JSON'] = 'true'
       output = `npm info crontab-ui`
       version = JSON.parse(output)['version']
-      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n crontab-ui -d nodejs --prefix /opt \
+      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n crontabui -d nodejs --prefix /opt \
         --license 'Apache-2.0' -m 'Infra CultuurNet <infra@cultuurnet.be>' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
         --description 'An easy and safe way to manage your crontab file' .")
