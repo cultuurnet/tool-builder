@@ -17,13 +17,13 @@ namespace "#{namespace}" do
   desc "Create a debian package from the binaries."
   task :build_package => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      system("fpm -s python -t deb -C pkg -n python3-msgpack \
+      system("fpm -s python -t deb -p pkg -n python3-msgpack \
         -m 'Infra CultuurNet <infra@cultuurnet.be>' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
         --python-package-name-prefix python3 --python-bin python3 \
         --python-easyinstall easy_install3 --no-python-fix-name \
 	msgpack-python")
-      system("fpm -s python -t deb -C pkg -d python3-msgpack \
+      system("fpm -s python -t deb -p pkg -d python3-msgpack \
         -m 'Infra CultuurNet <infra@cultuurnet.be>' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
         --python-package-name-prefix python3 --python-bin python3 \
@@ -32,7 +32,7 @@ namespace "#{namespace}" do
         -d fuse -d python3-llfuse -d 'python3-msgpack >= 0.4.6' \
 	-d python3-pkg-resources \
 	borgbackup")
-      system("fpm -s python -t deb -C pkg -d python3-borgbackup \
+      system("fpm -s python -t deb -p pkg -d python3-borgbackup \
         --license 'Apache-2.0' -m 'Infra CultuurNet <infra@cultuurnet.be>' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
         --python-package-name-prefix python3 --python-bin python3 \
