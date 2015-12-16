@@ -6,7 +6,7 @@ ROOT_DIR = File.expand_path("..", __FILE__)
 CLEAN.include("")
 CLOBBER.include("")
 
-FileList["#{ROOT_DIR}/*/*.rake"].each { |fn| load fn }
+FileList["#{ROOT_DIR}/*/build.rake"].each { |fn| load fn }
 
 desc "Default task prints the available targets."
 task :default do
