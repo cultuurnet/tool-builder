@@ -23,7 +23,7 @@ namespace "#{namespace}" do
       system("fpm -s dir -t deb -a all -C pkg -v #{version} -n phing -d php5-cli --prefix /usr/bin \
         --license 'Apache-2.0' -m 'Infra CultuurNet <infra@cultuurnet.be>' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
-        --description 'PHing Is Not GNU make; it's a PHP project build system or build tool based on Apache Ant.' .")
+        --description 'PHing Is Not GNU make; it is a PHP project build system or build tool based on Apache Ant.' .")
     }
   end
 
