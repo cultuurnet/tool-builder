@@ -19,7 +19,7 @@ namespace "#{namespace}" do
   desc "Create a debian package from the binaries."
   task :build_package => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      version = `pkg/drush version --format=string`
+      version = `php pkg/drush version --format=string`
       system("fpm -s dir -t deb -a all -C pkg -v #{version} -n drush -d php5-cli --prefix /usr/bin \
         --license 'Apache-2.0' -m 'Infra CultuurNet <infra@cultuurnet.be>' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
