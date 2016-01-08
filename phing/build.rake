@@ -12,8 +12,8 @@ namespace "#{namespace}" do
   task :build => [:download] do |task|
     FileUtils.cd task.name.split(':')[0] {
       FileUtils.mkdir_p("pkg")
-      FileUtils.mv("phing","pkg")
-      FileUtils.chmod("0755","pkg/phing")
+      FileUtils.mv("phing", "pkg")
+      FileUtils.chmod(0755, "pkg/phing")
     }
   end
 
