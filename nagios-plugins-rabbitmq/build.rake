@@ -22,16 +22,14 @@ namespace "#{namespace}" do
       metadata = JSON.load(File.read('nagios-plugins-rabbitmq/META.json'))
       version = metadata['version'][/[\d\.]+/]
 
-      %w(Config::Tiny Math::Calc::Units Module::Implementation Module::Runtime Params::Validate Try::Tiny).each do | perl_package |
-        system("fpm -s cpan -t deb #{perl_package}")
+      %w(Config::Tiny Math::Calc::Units Module::Implementation Module::Runtime Params::Validate Try::Tiny Monitoring::Plugin).each do | perl_package |
+        system("fpm -s cpan -t deb --no-depends #{perl_package}")
       end
-
-      system("fpm -s cpan -t deb --no-depends -d 'perl-config-tiny' -d 'perl-math-calc-units' \
-        -d 'perl-module-implementation' -d 'perl-module-runtime' -d 'perl-params-validate' \
-        -d 'perl-try-tiny' Monitoring::Plugin")
 
       system("fpm -s dir -t deb -n nagios-plugins-rabbitmq -v #{version} \
         -m 'Infra CultuurNet <infra@cultuurnet.be>' -d 'perl-monitoring-plugin' \
+        -d 'perl-config-tiny' -d 'perl-math-calc-units' -d 'perl-try-tiny' \
+        -d 'perl-module-implementation' -d 'perl-module-runtime' -d 'perl-params-validate' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
 	      --prefix /usr/lib/nagios/plugins -C nagios-plugins-rabbitmq/scripts .")
     }
