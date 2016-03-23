@@ -30,6 +30,7 @@ namespace "#{namespace}" do
         -m 'Infra CultuurNet <infra@cultuurnet.be>' -d 'perl-monitoring-plugin' \
         -d 'perl-config-tiny' -d 'perl-math-calc-units' -d 'perl-try-tiny' \
         -d 'perl-module-implementation' -d 'perl-module-runtime' -d 'perl-params-validate' \
+        -d 'libwww-perl' -d 'libjson-perl' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
 	      --prefix /usr/lib/nagios/plugins -C nagios-plugins-rabbitmq/scripts .")
     }
