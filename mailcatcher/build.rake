@@ -23,7 +23,7 @@ namespace "#{namespace}" do
         -m 'Infra CultuurNet <infra@cultuurnet.be>' -d 'rubygem-mailcatcher' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
         --deb-upstart upstart/mailcatcher --deb-default default/mailcatcher \
-        -x build.rake -x upstart -x default -x pkg --prefix / .")
+        -x build.rake -x upstart -x default -x '*.deb' --prefix / .")
     }
   end
 
