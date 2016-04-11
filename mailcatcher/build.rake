@@ -19,7 +19,7 @@ namespace "#{namespace}" do
       system("fpm -s gem -t deb mailcatcher")
       version = `dpkg --info rubygem-mailcatcher*.deb | grep "^ Version:"`.split(' ')[1]
 
-      system("fpm -s dir -t deb -n mailcatcher -v #{version} \
+      system("fpm -s dir -t deb -n mailcatcher -a all -v #{version} \
         -m 'Infra CultuurNet <infra@cultuurnet.be>' -d 'rubygem-mailcatcher' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
         --deb-upstart upstart/mailcatcher --deb-default default/mailcatcher \
