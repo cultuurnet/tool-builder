@@ -19,7 +19,8 @@ namespace "#{namespace}" do
       system("fpm -s gem -t deb resque")
       version = `dpkg --info rubygem-resque*.deb | grep "^ Version:"`.split(' ')[1]
 
-      system("mkdir -p var/{log,run}/resque-web")
+      system("mkdir -p var/log/resque-web")
+      system("mkdir -p var/run/resque-web")
       system("fpm -s dir -t deb -n resque-web -a all -v #{version} \
         -m 'Infra CultuurNet <infra@cultuurnet.be>' -d 'rubygem-resque' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
