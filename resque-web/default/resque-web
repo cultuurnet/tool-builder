@@ -1,0 +1,4 @@
+HOST=0.0.0.0
+PORT=5678
+ENV=development
+LOG=/var/log/resque-web/resque-web.log
