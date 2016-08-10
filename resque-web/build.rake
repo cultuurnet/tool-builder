@@ -18,7 +18,7 @@ namespace "#{namespace}" do
     FileUtils.cd task.name.split(':')[0] {
       system("fpm -s gem -t deb resque")
       version = `dpkg --info rubygem-resque*.deb | grep "^ Version:"`.split(' ')[1]
-      iteration = `date '+%Y%m%d%H%M%S'`
+      iteration = `date '+%Y%m%d%H%M%S'`.chomp
 
       system("mkdir -p var/log/resque-web")
       system("mkdir -p var/lib/resque-web")
