@@ -20,7 +20,7 @@ namespace "#{namespace}" do
       version = `dpkg --info rubygem-resque*.deb | grep "^ Version:"`.split(' ')[1]
 
       system("mkdir -p var/log/resque-web")
-      system("mkdir -p var/run/resque-web")
+      system("mkdir -p var/lib/resque-web")
       system("rm -f rubygem-resque*.deb")
       system("fpm -s dir -t deb -n resque-web -a all -v #{version} \
         -m 'Infra CultuurNet <infra@cultuurnet.be>' -d 'rubygem-resque' \

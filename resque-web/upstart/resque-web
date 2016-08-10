@@ -10,5 +10,5 @@ setgid www-data
 
 script
     [ -f /etc/default/resque-web ] && . /etc/default/resque-web
-    exec /usr/local/bin/resque-web -F --app-dir /var/run/resque-web --host ${HOST:-0.0.0.0} --port ${PORT:-5678} --env ${ENV:-development} --log-file ${LOGFILE:-/var/log/resque-web/resque-web.log}
+    exec /usr/local/bin/resque-web -F --app-dir /var/lib/resque-web --host ${HOST:-0.0.0.0} --port ${PORT:-5678} --env ${ENV:-development} --log-file ${LOGFILE:-/var/log/resque-web/resque-web.log}
 end script
