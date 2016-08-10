@@ -18,6 +18,7 @@ namespace "#{namespace}" do
     FileUtils.cd task.name.split(':')[0] {
       system("fpm -s gem -t deb resque")
       version = `dpkg --info rubygem-resque*.deb | grep "^ Version:"`.split(' ')[1]
+      iteration = `date '+%Y%m%d%H%M%S'`
 
       system("mkdir -p var/log/resque-web")
       system("mkdir -p var/lib/resque-web")
@@ -26,7 +27,7 @@ namespace "#{namespace}" do
         -m 'Infra CultuurNet <infra@cultuurnet.be>' -d 'rubygem-resque' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
         --deb-upstart upstart/resque-web --deb-default default/resque-web \
-        --deb-user www-data --deb-group www-data \
+        --deb-user www-data --deb-group www-data --iteration #{iteration} \
         -x build.rake -x upstart -x default -x '*.deb' --prefix / .")
     }
   end
