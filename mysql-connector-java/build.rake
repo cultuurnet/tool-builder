@@ -1,6 +1,6 @@
 namespace = File.basename(File.expand_path("..", __FILE__))
 
-version = '5.1.39'
+version = (ENV['version'].nil? or ENV['version'].empty?) ? '5.1.39' : ENV['version']
 name = 'mysql-connector-java'
 download_url = "https://dev.mysql.com/get/Downloads/Connector-J/#{name}-#{version}.tar.gz"
 
