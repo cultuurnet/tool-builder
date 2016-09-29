@@ -19,6 +19,7 @@ namespace "#{namespace}" do
       FileUtils.mv "#{name}3", "#{name}" if version =~ /^3\./
       system("echo 'jre-1.8=${jre-1.7}' >> #{name}/glassfish/config/osgi.properties")
       FileUtils.rm_r "#{name}/glassfish/domains/domain1"
+      FileUtils.chmod 0777, "#{name}/glassfish/domains"
     }
   end
 
