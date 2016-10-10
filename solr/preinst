@@ -1,0 +1,8 @@
+#!/bin/sh
+
+set -e
+
+getent group solr > /dev/null || groupadd -r solr
+getent passwd solr > /dev/null || useradd -r -g solr -s /bin/bash -d /home/solr -c "SOLR User" solr
+
+exit 0

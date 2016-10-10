@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+    purge)
+        userdel -f solr
+        groupdel -f solr
+    ;;
+    *)
+    ;;
+esac
+
+exit 0

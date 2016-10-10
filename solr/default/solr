@@ -1,0 +1,36 @@
+# Defaults for jetty see /etc/init.d/jetty for more
+
+# change to 0 to allow Jetty to start
+NO_START=0
+
+# change to 'no' or uncomment to use the default setting in /etc/default/rcS 
+VERBOSE=yes
+
+# Run Jetty as this user ID (default: jetty)
+# Set this to an empty string to prevent Jetty from starting automatically
+JETTY_USER=solr
+
+# Listen to connections from this network host
+# Use 0.0.0.0 as host to accept all connections.
+# Uncomment to restrict access to localhost
+JETTY_HOST=127.0.0.1
+
+# The network port used by Jetty
+JETTY_PORT=8983
+
+# Additional arguments to pass to Jetty    
+#JETTY_ARGS=
+
+# log file
+JETTY_LOGS=/opt/solr/logs
+
+JETTY_HOME=/opt/solr
+
+# Extra options to pass to the JVM         
+#JAVA_OPTIONS="-Xmx256m -Djava.awt.headless=true"
+JAVA_OPTIONS="-Dsolr.solr.home=/opt/solr/solr $JAVA_OPTIONS"
+
+# Home of Java installation.
+#JAVA_HOME=/usr/java/default
+JAVA_HOME=/usr/lib/jvm/java-8-oracle/jre
+JAVA=/usr/lib/jvm/java-8-oracle/jre/bin/java
