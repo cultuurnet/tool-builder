@@ -22,6 +22,7 @@ namespace "#{namespace}" do
       FileUtils.mv("#{name}-#{version}/example", 'pkg/opt/solr')
       FileUtils.mkdir('pkg/opt/solr/example')
       FileUtils.mv('pkg/opt/solr/solr/collection1', 'pkg/opt/solr/example')
+      FileUtils.mv('pkg/opt/solr/example/collection1/core.properties', 'pkg/opt/solr/example/collection1/core.properties.example')
       FileUtils.mv('pkg/opt/solr/example/collection1/conf/schema.xml', 'pkg/opt/solr/example/collection1/conf/schema.xml.example')
       FileUtils.mv('pkg/opt/solr/example/collection1/conf/solrconfig.xml', 'pkg/opt/solr/example/collection1/conf/solrconfig.xml.example')
       FileUtils.cp('init.d/solr', "pkg/etc/init.d/solr")
