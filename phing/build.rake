@@ -21,7 +21,7 @@ namespace "#{namespace}" do
   task :build_package => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       version = `php pkg/phing -v`.split(' ')[1]
-      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n phing -d php5-cli --prefix /usr/bin \
+      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n phing -d 'php5-cli | php5.6-cli | php7.0-cli | php7.1-cli' --prefix /usr/bin \
         --license 'Apache-2.0' -m 'Infra CultuurNet <infra@cultuurnet.be>' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
         --description 'PHing Is Not GNU make; it is a PHP project build system or build tool based on Apache Ant.' .")
