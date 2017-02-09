@@ -1,6 +1,6 @@
 namespace = File.basename(File.expand_path("..", __FILE__))
 
-phar = ENV['version'].nil? or ENV['version'].empty?) ? "phpunit.phar" : "phpunit-#{ENV['version']}.phar"
+phar = ENV['version'].nil? or ENV['version'].empty? ? "phpunit.phar" : "phpunit-#{ENV['version']}.phar"
 
 namespace "#{namespace}" do
   desc "Download the necessary sources for the version specified."
