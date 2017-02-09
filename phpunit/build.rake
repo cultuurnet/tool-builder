@@ -1,10 +1,12 @@
 namespace = File.basename(File.expand_path("..", __FILE__))
 
+phar = ENV['version'].nil? or ENV['version'].empty?) ? "phpunit.phar" : "phpunit-#{ENV['version']}.phar"
+
 namespace "#{namespace}" do
   desc "Download the necessary sources for the version specified."
   task :download => [:clean] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      system("wget https://phar.phpunit.de/phpunit.phar -O phpunit")
+      system("wget https://phar.phpunit.de/#{phar} -O phpunit")
     }
   end
 
