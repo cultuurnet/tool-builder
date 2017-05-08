@@ -1,6 +1,7 @@
 namespace = File.basename(File.expand_path("..", __FILE__))
 
 version = (ENV['version'].nil? or ENV['version'].empty?) ? '3.1.2.2' : ENV['version']
+short_version = version.split('.')[0]
 name = 'glassfish'
 download_url = "http://download.java.net/#{name}/#{version}/release/#{name}-#{version}.zip"
 
@@ -16,9 +17,9 @@ namespace "#{namespace}" do
   task :build => [:download] do |task|
     FileUtils.cd task.name.split(':')[0] {
       system("unzip #{name}-#{version}.zip")
-      FileUtils.mv "#{name}3", "#{name}" if version =~ /^3\./
+      FileUtils.mv "#{name}#{short_version}", "#{name}"
       system("echo 'jre-1.8=${jre-1.7}' >> #{name}/glassfish/config/osgi.properties")
-      FileUtils.rm_r "#{name}/glassfish/domains/domain1"
+      FileUtils.rm_r(Dir.glob("#{name}/glassfish/domains/*"), :force => true)
       FileUtils.chmod 0777, "#{name}/glassfish/domains"
     }
   end
