@@ -5,22 +5,18 @@ namespace "#{namespace}" do
   task :download => [:clean] do |task|
     FileUtils.cd task.name.split(':')[0] {
       system("git clone git@github.com:tudelft3d/prepair.git")
-      FileUtils.cd 'prepair' {
-        system("rm definitions.h")
-        system("git checkout improvements-with-ogr")
-      }
     }
   end
 
   desc "Create binaries from the source code."
   task :build => [:download] do |task|
-    FileUtils.cd task.name.split(':')[0] {
-      FileUtils.cd 'prepair' {
-        system("cmake .")
-        system("make")
-        system("mkdir pkg")
-        system("mv prepair pkg")
-      }
+    FileUtils.cd "#{task.name.split(':')[0]}/prepair" {
+      system("rm definitions.h")
+      system("git checkout improvements-with-ogr")
+      system("cmake .")
+      system("make")
+      system("mkdir pkg")
+      system("mv prepair pkg")
     }
   end
 
