@@ -10,14 +10,14 @@ namespace "#{namespace}" do
 
   desc "Create binaries from the source code."
   task :build => [:download] do |task|
-    FileUtils.cd "#{task.name.split(':')[0]}/prepair" {
+    FileUtils.cd "#{task.name.split(':')[0]}/prepair" do
       system("rm definitions.h")
       system("git checkout improvements-with-ogr")
       system("cmake .")
       system("make")
       system("mkdir pkg")
       system("mv prepair pkg")
-    }
+    end
   end
 
   desc "Create a debian package from the binaries."
