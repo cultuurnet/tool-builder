@@ -27,7 +27,9 @@ namespace "#{namespace}" do
       system("fpm -s dir -t deb -n prepair -v #{version} \
         -m 'Infra CultuurNet <infra@cultuurnet.be>' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
-	      -d libgdal1h -d libcgal10 --prefix /usr/bin -C pkg .")
+	      -d libgdal1h -d libcgal10 -d libboost-program-options1.54.0 \
+        --prefix /usr/bin -C pkg ."
+      )
     }
   end
 
