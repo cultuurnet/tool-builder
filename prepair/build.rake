@@ -15,8 +15,8 @@ namespace "#{namespace}" do
       system("git checkout improvements-with-ogr")
       system("cmake .")
       system("make")
-      system("mkdir pkg")
-      system("mv prepair pkg")
+      system("mkdir ../pkg")
+      system("mv prepair ../pkg")
     end
   end
 
@@ -27,7 +27,7 @@ namespace "#{namespace}" do
       system("fpm -s dir -t deb -n prepair -v #{version} \
         -m 'Infra CultuurNet <infra@cultuurnet.be>' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
-	      -d libgdal1h -d libcgal10 -p /usr/bin -C prepair/pkg .")
+	      -d libgdal1h -d libcgal10 --prefix /usr/bin -C pkg .")
     }
   end
 
