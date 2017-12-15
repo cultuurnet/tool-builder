@@ -12,6 +12,7 @@ namespace "#{namespace}" do
   task :build => [:download] do |task|
     FileUtils.cd "#{task.name.split(':')[0]}/build-your-own-radar" do
       system("npm install")
+      system("patch -p 0 src/util/factory.js < ../factory.js.diff")
       system("npm run build")
     end
   end

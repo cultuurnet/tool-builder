@@ -1,0 +1,11 @@
+167c167
+<     
+---
+> 
+169,170c169,171
+<         var domainName = DomainName(window.location.search.substring(1));
+<         var queryParams = QueryParams(window.location.search.substring(1));
+---
+>         var hardCodedSheetId = 'sheetId=https://docs.google.com/spreadsheets/d/1VfCQ3wmJmXCmhDiuqnFHLnPlQSjM3_SpdlzYyDplxMc'
+>         var domainName = DomainName(hardCodedSheetId);
+>         var queryParams = QueryParams(hardCodedSheetId);
