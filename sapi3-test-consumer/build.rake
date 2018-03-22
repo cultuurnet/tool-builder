@@ -11,6 +11,7 @@ namespace "#{namespace}" do
   desc "Create binaries from the source code."
   task :build => [:download] do |task|
     FileUtils.cd task.name.split(':')[0] {
+      system("cd sapi3-test-consumer; npm install")
       system("cd sapi3-test-consumer; composer install --ignore-platform-reqs --prefer-dist --optimize-autoloader")
     }
   end
@@ -21,7 +22,7 @@ namespace "#{namespace}" do
 
     FileUtils.cd task.name.split(':')[0] {
       date = DateTime.now.strftime(format='%Y%m%d%H%M%S')
-      ref = `git show-ref -s refs/heads/master`[0..6]
+      ref = `cd sapi3-test-consumer; git show-ref -s refs/heads/master`[0..6]
       version = "#{date}+sha.#{ref}"
 
       system("fpm -s dir -t deb -n sapi3-test-consumer -v #{version} \
