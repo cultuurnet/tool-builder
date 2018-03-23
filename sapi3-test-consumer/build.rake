@@ -12,6 +12,7 @@ namespace "#{namespace}" do
   task :build => [:download] do |task|
     FileUtils.cd task.name.split(':')[0] {
       system("cd sapi3-test-consumer; npm install")
+      system("cd sapi3-test-consumer/public; bower install")
       system("cd sapi3-test-consumer; composer install --ignore-platform-reqs --prefer-dist --optimize-autoloader")
     }
   end
