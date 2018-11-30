@@ -35,8 +35,8 @@ namespace "#{namespace}" do
   desc "Remove generated files."
   task :clean do |task|
     FileUtils.cd task.name.split(':')[0] {
-      FileUtils.rm_r("#{name}*", :force => true)
-      FileUtils.rm("*.deb", :force => true)
+      FileUtils.rm_r(Dir.glob("#{name}*"), :force => true)
+      FileUtils.rm(Dir.glob("*.deb"), :force => true)
     }
   end
 end
