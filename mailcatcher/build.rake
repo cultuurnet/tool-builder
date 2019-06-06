@@ -1,4 +1,5 @@
 namespace = File.basename(File.expand_path("..", __FILE__))
+version = (ENV['version'].nil? or ENV['version'].empty?) ? '0.6.5' : ENV['version']
 
 namespace "#{namespace}" do
   desc "Download the necessary sources for the version specified."
@@ -16,8 +17,7 @@ namespace "#{namespace}" do
   desc "Create a debian package from the binaries."
   task :build_package => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      system("fpm -s gem -t deb mailcatcher")
-      version = `dpkg --info rubygem-mailcatcher*.deb | grep "^ Version:"`.split(' ')[1]
+      system("fpm -s gem -t deb -v #{version} mailcatcher")
 
       system("fpm -s dir -t deb -n mailcatcher -a all -v '#{version}' \
         -m 'Infra CultuurNet <infra@cultuurnet.be>' -d 'rubygem-mailcatcher' \
