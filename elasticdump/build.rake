@@ -26,7 +26,7 @@ namespace "#{namespace}" do
       ENV['NPM_CONFIG_JSON'] = 'true'
       output = `npm info elasticdump`
       version = JSON.parse(output)['version']
-      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n elasticdump -d nodejs --prefix /opt \
+      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n elasticdump -d 'nodejs > 6' --prefix /opt \
         --license 'Apache-2.0' -m 'Infra CultuurNet <infra@cultuurnet.be>' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
         --after-install postinst --before-remove prerm  \
