@@ -21,7 +21,7 @@ namespace "#{namespace}" do
       system("mv WEB-INF/lib/cli-*.jar pkg/usr/share/#{name}")
 
       version = `ls pkg/usr/share/#{name}`[/cli\-(.+)\.jar/, 1]
-      File.open("pkg/usr/bin/#{name}", 'w') { |file| file.write("#!/bin/bash\n\njava -jar /usr/share/#{name}/cli-#{version}.jar $@\n") }
+      File.open("pkg/usr/bin/#{name}", 'w') { |file| file.write("#!/bin/bash\n\njava -jar /usr/share/#{name}/cli-#{version}.jar -s http://localhost:8080/ $@\n") }
       FileUtils.chmod(0755, "pkg/usr/bin/#{name}")
     }
   end
