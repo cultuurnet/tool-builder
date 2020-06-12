@@ -16,12 +16,6 @@ namespace "#{namespace}" do
   desc "Create a debian package from the binaries."
   task :build_package => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      system("fpm -s python -t deb -n python3-colorama \
-        -m 'Infra publiq <infra@publiq.be>' -d 'python3' \
-        --url 'https://www.publiq.be' --vendor 'publiq vzw' \
-        --python-package-name-prefix python3 --python-bin python3 \
-        --python-easyinstall easy_install3 --no-python-fix-name \
-	colorama")
       system("fpm -s python -t deb -n python3-pyyaml \
         -m 'Infra publiq <infra@publiq.be>' -d 'python3' \
         --url 'https://www.publiq.be' --vendor 'publiq vzw' \
@@ -38,7 +32,7 @@ namespace "#{namespace}" do
         -m 'Infra publiq <infra@publiq.be>' -d 'python3' \
         --url 'https://www.publiq.be' --vendor 'publiq vzw' \
         --python-package-name-prefix python3 --python-bin python3 \
-        --python-easyinstall easy_install3 --no-python-fix-name \
+        --python-easyinstall easy_install3 --no-python-fix-name -v 1.2.0 \
 	borgmatic")
     }
   end
@@ -46,8 +40,7 @@ namespace "#{namespace}" do
   desc "Remove generated files."
   task :clean do |task|
     FileUtils.cd task.name.split(':')[0] {
-      FileUtils.rm_r("pkg", :force => true)
-      FileUtils.rm("*.deb", :force => true)
+      FileUtils.rm(Dir.glob("*.deb"), :force => true)
     }
   end
 end
