@@ -21,7 +21,7 @@ namespace "#{namespace}" do
   task :build_package => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       version = `php pkg/drush version --format=string`.chomp
-      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n drush -d 'php5-cli | php5.6-cli | php7.0-cli | php7.1-cli' --prefix /usr/bin \
+      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n drush -d 'php5-cli | php5.6-cli | php7.1-cli | php7.4-cli' --prefix /usr/bin \
         --license 'Apache-2.0' -m 'Infra CultuurNet <infra@cultuurnet.be>' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
         --description 'Drush is a command line shell and Unix scripting interface for Drupal.' .")

@@ -21,7 +21,7 @@ namespace "#{namespace}" do
   task :build_package => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       version = `pkg/composer --no-ansi -V`.split[2]
-      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n composer -d 'php5-cli | php5.6-cli | php7.0-cli | php7.1-cli' --prefix /usr/bin \
+      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n composer -d 'php5-cli | php5.6-cli | php7.1-cli | php7.4-cli' --prefix /usr/bin \
         --license 'Apache-2.0' -m 'Infra CultuurNet <infra@cultuurnet.be>' \
         --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
         --description 'Composer is a dependency manager tracking local dependencies of your projects and libraries' .")
