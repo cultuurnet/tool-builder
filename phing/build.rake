@@ -1,10 +1,12 @@
 namespace = File.basename(File.expand_path("..", __FILE__))
 
+version = (ENV['version'].nil? or ENV['version'].empty?) ? 'latest' : ENV['version']
+
 namespace "#{namespace}" do
   desc "Download the necessary sources for the version specified."
   task :download => [:clean] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      system("wget http://www.phing.info/get/phing-latest.phar -O phing")
+      system("wget http://www.phing.info/get/phing-#{version}.phar -O phing")
     }
   end
 
