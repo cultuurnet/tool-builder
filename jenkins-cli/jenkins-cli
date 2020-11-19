@@ -1,0 +1,9 @@
+#!/bin/bash
+
+source /etc/jenkins-cli/cli.conf
+
+USER=${ADMIN_USER}
+PASSWORD=${ADMIN_PASSWORD}
+URL=${SERVER_URL:-http://localhost:8080}
+
+java -jar /usr/share/jenkins-cli/cli.jar -webSocket -auth ${USER}:${PASSWORD} -s ${SERVER_URL} $@
