@@ -2,8 +2,12 @@
 
 source /etc/jenkins-cli/cli.conf
 
-USER=${ADMIN_USER}
-PASSWORD=${ADMIN_PASSWORD}
+USER=${JENKINS_USER:-}
+APITOKEN=${JENKINS_APITOKEN:-}
 URL=${SERVER_URL:-http://localhost:8080}
 
-java -jar /usr/share/jenkins-cli/cli.jar -webSocket -auth ${USER}:${PASSWORD} -s ${SERVER_URL} $@
+if [ -n "${USER}" -a -n "${PASSWORD}" ]; then
+    java -jar /usr/share/jenkins-cli/cli.jar -webSocket -auth ${USER}:${APITOKEN} -s ${SERVER_URL} $@
+else
+    java -jar /usr/share/jenkins-cli/cli.jar -webSocket -s ${SERVER_URL} $@
+fi
