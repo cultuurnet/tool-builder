@@ -32,7 +32,7 @@ namespace "#{namespace}" do
         -m 'Infra publiq <infra@publiq.be>' -d 'python3' \
         --url 'https://www.publiq.be' --vendor 'publiq vzw' \
         --python-package-name-prefix python3 --python-bin python3 \
-        --python-easyinstall easy_install3 --no-python-fix-name -v 1.2.0 \
+        --python-easyinstall easy_install3 --no-python-fix-name -v 1.0.3 \
 	borgmatic")
     }
   end
