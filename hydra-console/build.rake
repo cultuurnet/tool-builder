@@ -36,7 +36,7 @@ namespace "#{namespace}" do
   task :clean do |task|
     FileUtils.cd task.name.split(':')[0] {
       FileUtils.rm_r("hydra-console", :force => true)
-      FileUtils.rm("*.deb", :force => true)
+      FileUtils.rm(Dir.glob("*.deb"), :force => true)
     }
   end
 end
