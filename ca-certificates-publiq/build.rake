@@ -21,8 +21,8 @@ namespace "#{namespace}" do
     FileUtils.cd task.name.split(':')[0] {
       version = Time.now.strftime("%Y%m%d%H%M%S")
       system("fpm -s dir -t deb -a all -C pkg -v #{version} -n ca-certificates-publiq --prefix / \
-        --license 'Apache-2.0' -m 'Infra CultuurNet <infra@cultuurnet.be>' \
-        --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
+        --license 'Apache-2.0' -m 'Infra publiq <infra@publiq.be>' \
+        --url 'https://www.publiq.be' --vendor 'publiq VZW' \
 	      --after-install postinst --after-remove postrm \
         --description 'publiq root certificates' .")
     }
