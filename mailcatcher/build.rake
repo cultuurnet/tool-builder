@@ -17,14 +17,25 @@ namespace "#{namespace}" do
   desc "Create a debian package from the binaries."
   task :build_package => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      system("fpm -s gem -t deb -v #{version} mailcatcher")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.0.9.1 eventmachine")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.6.4 mail")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.6.2 mime-types")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.6.4 rack")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.4.7 sinatra")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.5.3 rack-protection")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.0.2 tilt")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 0.2.4 skinny")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.3.11 sqlite3")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.5.1 thin")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.2.3 daemons")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v #{version} mailcatcher")
 
       system("fpm -s dir -t deb -n mailcatcher -a all -v '#{version}' \
-        -m 'Infra CultuurNet <infra@cultuurnet.be>' -d 'rubygem-mailcatcher' \
+        -m 'Infra publiq <infra@publiq.be>' -d 'rubygem-mailcatcher' \
         -d 'ruby' \
-        --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
-        --deb-upstart upstart/mailcatcher --deb-default default/mailcatcher \
-        -x build.rake -x upstart -x default -x '*.deb' --prefix / .")
+        --url 'https://www.publiq.be' --vendor 'publiq VZW' \
+        --deb-systemd systemd/mailcatcher.service --deb-default default/mailcatcher \
+        -x build.rake -x upstart -x systemd -x default -x '*.deb' --prefix / .")
     }
   end
 

@@ -1,0 +1,16 @@
+[Unit]
+Description=Mailcatcher
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+User=www-data
+Group=www-data
+PIDFile=/var/run/mailcatcher.pid
+EnvironmentFile=-/etc/default/mailcatcher
+ExecStart=/usr/bin/env mailcatcher --foreground --http-ip=${HTTP_IP:-0.0.0.0} --http-port=${HTTP_PORT:-1080} --smtp-ip=${SMTP_IP:-127.0.0.1} --smtp-port=${SMTP_PORT:-1025}
+Restart=on-failure
+RestartSec=10s
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
