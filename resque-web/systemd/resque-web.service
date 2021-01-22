@@ -1,0 +1,16 @@
+[Unit]
+Description=Resque Web interface
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+User=www-data
+Group=www-data
+PIDFile=/var/run/resque-web.pid
+EnvironmentFile=-/etc/default/resque-web
+ExecStart=/usr/bin/env resque-web -F --app-dir /var/lib/resque-web --host ${HOST} --port ${PORT} --env ${ENV} --log-file ${LOG}
+Restart=on-failure
+RestartSec=10s
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
