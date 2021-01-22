@@ -17,6 +17,7 @@ namespace "#{namespace}" do
   desc "Create a debian package from the binaries."
   task :build_package => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
+      system("sudo apt-get install build-essential")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.0.9.1 eventmachine")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.6.4 mail")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.6.2 mime-types")
@@ -25,6 +26,7 @@ namespace "#{namespace}" do
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.5.3 rack-protection")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.0.2 tilt")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 0.2.4 skinny")
+      system("sudo apt-get install libsqlite3-dev")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.3.11 sqlite3")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.5.1 thin")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.2.3 daemons")
