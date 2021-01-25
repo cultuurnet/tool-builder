@@ -19,8 +19,8 @@ namespace "#{namespace}" do
     FileUtils.cd task.name.split(':')[0] {
       system("sudo apt-get install build-essential")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.0.9.1 eventmachine")
-      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.6.4 mail")
-      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.6.2 mime-types")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.7.1 mail")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.0.2 mini_mime")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.6.4 rack")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.4.7 sinatra")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.5.3 rack-protection")
