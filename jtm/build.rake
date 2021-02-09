@@ -11,6 +11,7 @@ namespace "#{namespace}" do
   desc "Create binaries from the source code."
   task :build => [:download] do |task|
     FileUtils.cd task.name.split(':')[0] {
+      FileUtils.chmod(0755, "jtm", :verbose => true)
       FileUtils.mkdir_p("build")
       FileUtils.mv("jtm", "build")
     }
@@ -19,7 +20,7 @@ namespace "#{namespace}" do
   desc "Create a debian package from the binaries."
   task :build_package => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      version = `chmod +x build/jtm; build/jtm -h | grep "^Version" | sed -e 's/^Version \(.*\), .*/\1/'`
+      version = `build/jtm -h`[/^Version (.*), .*/, 1]
       system("fpm -s dir -t deb -a all -v #{version} -n jtm --prefix /usr/bin \
         --license 'Apache-2.0' -m 'Infra publiq <infra@publiq.be>' \
         --url 'https://www.publiq.be' --vendor 'publiq VZW' -a native \
