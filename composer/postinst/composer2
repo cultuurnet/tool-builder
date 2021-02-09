@@ -1,0 +1,5 @@
+#!/bin/sh
+
+set -e
+
+update-alternatives --install /usr/bin/composer composer /usr/bin/composer2 10
