@@ -21,6 +21,7 @@ namespace "#{namespace}" do
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.15.10 cri")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.0.3 pl-puppetdb-ruby")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 0.6.0 multi_xml")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 3.2020.1104 mime-types-data")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 3.3.1 mime-types")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 0.18.1 httparty")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v #{version} puppetdb_cli")
