@@ -31,13 +31,15 @@ namespace "#{namespace}" do
         --after-install postinst/composer1 --before-remove prerm/composer1 \
         --license 'Apache-2.0' -m 'Infra publiq <infra@publiq.be>' \
         --url 'https://www.publiq.be' --vendor 'publiq VZW' --prefix /usr/bin \
-        --description 'Composer is a dependency manager tracking local dependencies of your projects and libraries' .")
+        --description 'Composer is a dependency manager tracking local dependencies of your projects and libraries' \
+        --provides composer .")
       system("fpm -s dir -t deb -a all -C pkg/composer2 -v #{version_composer2} \
         -n composer2 -d 'php5-cli | php5.6-cli | php7.1-cli | php7.4-cli' \
         --after-install postinst/composer2 --before-remove prerm/composer2 \
         --license 'Apache-2.0' -m 'Infra publiq <infra@publiq.be>' \
         --url 'https://www.publiq.be' --vendor 'publiq VZW' --prefix /usr/bin \
-        --description 'Composer is a dependency manager tracking local dependencies of your projects and libraries' .")
+        --description 'Composer is a dependency manager tracking local dependencies of your projects and libraries' \
+        --provides composer .")
     }
   end
 
