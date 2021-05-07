@@ -20,7 +20,7 @@ namespace "#{namespace}" do
       system("fpm -s python -t deb --iteration 1~ubuntu#{release}\
         --python-pip pip -m 'Infra publiq <infra@publiq.be>' \
         --url 'https://www.publiq.be' --vendor 'publiq vzw' \
-	supervisord-nagios")
+	--no-python-dependencies supervisord-nagios")
     }
   end
 
