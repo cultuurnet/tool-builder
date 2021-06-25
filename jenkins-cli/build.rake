@@ -1,14 +1,16 @@
-namespace = File.basename(File.expand_path("..", __FILE__))
+package_namespace = File.basename(File.expand_path("..", __FILE__)).to_sym
 
-version = (ENV['version'].nil? or ENV['version'].empty?) ? 'latest' : ENV['version']
 name = 'jenkins-cli'
-download_url = "http://mirrors.jenkins.io/war-stable/#{version}/jenkins.war"
+download_host = "http://mirrors.jenkins.io"
 
-namespace "#{namespace}" do
+namespace package_namespace do
   desc "Download the necessary sources for the version specified."
   task :download => [:clean] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      system("wget #{download_url}")
+      system("wget #{download_host}/war-stable/latest/jenkins.war")
+      system("jar xf jenkins.war META-INF/MANIFEST.MF")
+      version = File.read('META-INF/MANIFEST.MF')[/^Jenkins-Version: (.*)$/, 1].strip
+      system("wget #{download_host}/debian-stable/jenkins_#{version}_all.deb")
     }
   end
 
@@ -18,6 +20,7 @@ namespace "#{namespace}" do
       FileUtils.mkdir_p("pkg/usr/share/#{name}")
       FileUtils.mkdir_p("pkg/etc/#{name}")
       FileUtils.mkdir_p("pkg/usr/bin")
+
       system("jar xf jenkins.war $(jar tf jenkins.war | grep 'WEB-INF/lib/cli-')")
       system("cp WEB-INF/lib/cli-*.jar pkg/usr/share/#{name}/cli.jar")
       system("cp cli.conf pkg/etc/#{name}/cli.conf")
@@ -40,8 +43,10 @@ namespace "#{namespace}" do
   task :clean do |task|
     FileUtils.cd task.name.split(':')[0] {
       FileUtils.rm_r('pkg', :force => true)
+      FileUtils.rm_r('META-INF', :force => true)
       FileUtils.rm_r('WEB-INF', :force => true)
-      FileUtils.rm(Dir.glob("#{name}_*_all.deb"))
+      FileUtils.rm(Dir.glob("#{name}_*_all.deb"), :force => true)
+      FileUtils.rm(Dir.glob("jenkins_*_all.deb"), :force => true)
       FileUtils.rm('jenkins.war', :force => true)
     }
   end
