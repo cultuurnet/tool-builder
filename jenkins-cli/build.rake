@@ -32,7 +32,9 @@ namespace package_namespace do
   task :build_package => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       version = `ls WEB-INF/lib`[/cli\-(.+)\.jar/, 1]
-      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n #{name} -d java-runtime-headless --prefix / \
+      iteration = `date '+%Y%m%d%H%M%S'`.chomp
+      system("fpm -s dir -t deb -a all -C pkg -n #{name} -v #{version} \
+        --iteration #{iteration} -d java-runtime-headless --prefix / \
         --license 'Apache-2.0' -m 'Infra publiq <infra@publiq.be>' \
         --url 'https://www.publiq.be' --vendor 'publiq vzw' \
         --description 'Commandline interface to Jenkins' .")
