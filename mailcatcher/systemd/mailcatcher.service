@@ -3,8 +3,8 @@ Description=Mailcatcher
 After=syslog.target network.target remote-fs.target nss-lookup.target
 
 [Service]
-User=www-data
-Group=www-data
+User=root
+Group=root
 PIDFile=/var/run/mailcatcher.pid
 EnvironmentFile=-/etc/default/mailcatcher
 ExecStart=/usr/bin/env mailcatcher --foreground --http-ip=${HTTP_IP} --http-port=${HTTP_PORT} --smtp-ip=${SMTP_IP} --smtp-port=${SMTP_PORT}
