@@ -1,5 +1,6 @@
 namespace = File.basename(File.expand_path("..", __FILE__))
 version = (ENV['version'].nil? or ENV['version'].empty?) ? '0.6.5' : ENV['version']
+iteration = Time.now.strftime("%Y%m%d%H%M%S")
 
 namespace "#{namespace}" do
   desc "Download the necessary sources for the version specified."
@@ -32,7 +33,7 @@ namespace "#{namespace}" do
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.2.3 daemons")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v #{version} mailcatcher")
 
-      system("fpm -s dir -t deb -n mailcatcher -a all -v '#{version}' \
+      system("fpm -s dir -t deb -n mailcatcher -a all -v '#{version}' --iteration '#{iteration}' \
         -m 'Infra publiq <infra@publiq.be>' -d rubygem-mailcatcher -d ruby \
         --url 'https://www.publiq.be' --vendor 'publiq VZW' \
         --deb-systemd systemd/mailcatcher.service --deb-default default/mailcatcher \
