@@ -33,8 +33,7 @@ namespace "#{namespace}" do
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v #{version} mailcatcher")
 
       system("fpm -s dir -t deb -n mailcatcher -a all -v '#{version}' \
-        -m 'Infra publiq <infra@publiq.be>' -d 'rubygem-mailcatcher' \
-        -d 'ruby' \
+        -m 'Infra publiq <infra@publiq.be>' -d rubygem-mailcatcher -d ruby \
         --url 'https://www.publiq.be' --vendor 'publiq VZW' \
         --deb-systemd systemd/mailcatcher.service --deb-default default/mailcatcher \
         -x build.rake -x upstart -x systemd -x default -x '*.deb' --prefix / .")
