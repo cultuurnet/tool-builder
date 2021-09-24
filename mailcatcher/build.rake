@@ -37,7 +37,8 @@ namespace "#{namespace}" do
         -m 'Infra publiq <infra@publiq.be>' -d rubygem-mailcatcher -d ruby \
         --url 'https://www.publiq.be' --vendor 'publiq VZW' \
         --deb-systemd systemd/mailcatcher.service --deb-default default/mailcatcher \
-        -x build.rake -x upstart -x systemd -x default -x '*.deb' --prefix / .")
+        -x build.rake -x upstart -x systemd -x default -x prerm -x '*.deb' \
+        --before-remove prerm --prefix / .")
     }
   end
 
