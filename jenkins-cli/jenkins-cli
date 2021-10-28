@@ -2,8 +2,8 @@
 
 source /etc/jenkins-cli/cli.conf
 
-USER=${JENKINS_USER:-}
-APITOKEN=${JENKINS_PASSWORD:-}
+USER=${JENKINS_USER:-admin}
+APITOKEN=${JENKINS_PASSWORD:-$(test -f /var/lib/jenkins/secrets/initialAdminPassword && cat /var/lib/jenkins/secrets/initialAdminPassword)}
 URL=${SERVER_URL:-http://localhost:8080}
 
 if [ -n "${USER}" -a -n "${APITOKEN}" ]; then
