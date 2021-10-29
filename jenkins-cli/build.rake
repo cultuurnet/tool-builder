@@ -18,12 +18,10 @@ namespace package_namespace do
   task :build => [:download] do |task|
     FileUtils.cd task.name.split(':')[0] {
       FileUtils.mkdir_p("pkg/usr/share/#{name}")
-      FileUtils.mkdir_p("pkg/etc/#{name}")
       FileUtils.mkdir_p("pkg/usr/bin")
 
       system("jar xf jenkins.war $(jar tf jenkins.war | grep 'WEB-INF/lib/cli-')")
       system("cp WEB-INF/lib/cli-*.jar pkg/usr/share/#{name}/cli.jar")
-      system("cp cli.conf pkg/etc/#{name}/cli.conf")
       system("install -m 0755 #{name} pkg/usr/bin/#{name}")
     }
   end
