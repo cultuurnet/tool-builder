@@ -1,6 +1,8 @@
 #!/bin/bash
 
-source /etc/jenkins-cli/cli.conf
+if [ -f /etc/jenkins-cli/cli.conf ]; then
+    source /etc/jenkins-cli/cli.conf
+fi
 
 USER=${JENKINS_USER:-admin}
 APITOKEN=${JENKINS_PASSWORD:-$(test -f /var/lib/jenkins/secrets/initialAdminPassword && cat /var/lib/jenkins/secrets/initialAdminPassword)}
