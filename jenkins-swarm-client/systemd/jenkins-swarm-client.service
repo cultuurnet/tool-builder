@@ -1,0 +1,17 @@
+[Unit]
+Description=Jenkins Swarm client
+After=syslog.target network.target remote-fs.target nss-lookup.target
+
+[Service]
+User=jenkins
+Group=jenkins
+PIDFile=/var/run/jenkins-swarm-client.pid
+EnvironmentFile=-/etc/default/jenkins-swarm-client
+WorkingDirectory=/var/lib/jenkins-swarm-client
+ExecStart=/usr/bin/jenkins-swarm-client
+Restart=on-failure
+RestartSec=10s
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+set -e
+
+JENKINS_GROUP=jenkins
+JENKINS_USER=jenkins
+ROOTDIR=/var/lib/jenkins-swarm-client
+
+# Create jenkins group and user if they don't exist.
+if ! getent group "$JENKINS_GROUP" > /dev/null; then
+    addgroup --system --quiet "$JENKINS_GROUP"
+fi
+
+if ! id "$JENKINS_USER" > /dev/null 2>&1; then
+    adduser --system --quiet --home /var/lib/jenkins --no-create-home \
+    --ingroup "$JENKINS_GROUP" --disabled-password --shell /bin/bash \
+    --gecos 'Jenkins' "$JENKINS_USER"
+fi
+
+if ! test -d "$ROOTDIR" > /dev/null 2>&1; then
+    install -d -m '0755' -o "$JENKINS_USER" -g "$JENKINS_GROUP" "$ROOTDIR"
+fi
+
+exit 0

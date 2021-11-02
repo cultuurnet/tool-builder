@@ -1,0 +1,5 @@
+cat > prerm <<'EOF'
+#!/bin/bash
+
+service jenkins-swarm-client stop || exit 0
+EOF
