@@ -46,6 +46,9 @@ namespace package_namespace do
         --after-install postinst --before-remove prerm \
         -x upstart --deb-upstart upstart/jenkins-swarm-client \
         -x systemd --deb-systemd systemd/jenkins-swarm-client.service \
+        --deb-no-default-config-files \
+        --config-files /etc/jenkins-swarm-client/node-labels.conf \
+        --config-files /etc/jenkins-swarm-client/password \
         --license 'Apache-2.0' -m 'Infra publiq <infra@publiq.be>' \
         --url 'https://www.publiq.be' --vendor 'publiq vzw' \
         --description 'Jenkins Swarm client' .")
