@@ -4,6 +4,5 @@ USER=${JENKINS_USER:-admin}
 URL=${SERVER_URL:-http://localhost:8080}
 NAME=${CLIENT_NAME:-$(hostname -s)}
 EXECUTORS=${BUILD_EXECUTORS:-1}
-FSROOT=${ROOTDIR:-/var/lib/jenkins-swarm-client}
 
-java -jar /usr/share/jenkins-swarm-client/swarm-client.jar -webSocket -name "${NAME}" -deleteExistingClients -disableClientsUniqueId -fsroot "${FSROOT}" -labelsFile /etc/jenkins-swarm-client/node-labels.conf -executors "${EXECUTORS}" -username "${USER}" -passwordFile /etc/jenkins-swarm-client/password -url "${URL}"
+java -jar /usr/share/jenkins-swarm-client/swarm-client.jar -webSocket -name "${NAME}" -deleteExistingClients -disableClientsUniqueId -fsroot /var/lib/jenkins-swarm-client -labelsFile /etc/jenkins-swarm-client/node-labels.conf -executors "${EXECUTORS}" -username "${USER}" -passwordFile /etc/jenkins-swarm-client/password -url "${URL}"
