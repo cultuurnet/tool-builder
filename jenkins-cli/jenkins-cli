@@ -6,7 +6,7 @@ fi
 
 USER=${JENKINS_USER:-admin}
 APITOKEN=${JENKINS_PASSWORD:-$(test -f /var/lib/jenkins/secrets/initialAdminPassword && cat /var/lib/jenkins/secrets/initialAdminPassword)}
-URL=${SERVER_URL:-http://localhost:8080}
+URL=${CONTROLLER_URL:-http://localhost:8080}
 
 if [ -n "${USER}" -a -n "${APITOKEN}" ]; then
     java -jar /usr/share/jenkins-cli/cli.jar -webSocket -auth ${USER}:${APITOKEN} -s ${URL} $@
