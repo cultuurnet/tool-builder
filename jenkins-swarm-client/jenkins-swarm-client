@@ -1,7 +1,7 @@
 #!/bin/bash
 
 USER=${JENKINS_USER:-admin}
-URL=${SERVER_URL:-http://localhost:8080}
+URL=${CONTROLLER_URL:-http://localhost:8080}
 NAME=${CLIENT_NAME:-$(hostname -s)}
 EXECUTORS=${BUILD_EXECUTORS:-1}
 
