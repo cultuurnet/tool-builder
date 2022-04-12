@@ -24,10 +24,11 @@ GEM
     insist (1.0.0)
     io-like (0.3.1)
     json (1.8.6)
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.8.0)
     mustache (0.99.8)
-    nokogiri (1.10.10)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.13.4)
+      mini_portile2 (~> 2.8.0)
+      racc (~> 1.4)
     pleaserun (0.0.32)
       cabin (> 0)
       clamp
@@ -35,6 +36,7 @@ GEM
       insist
       mustache (= 0.99.8)
       stud
+    racc (1.6.0)
     rake (12.2.1)
     ruby-xz (0.2.3)
       ffi (~> 1.9)
@@ -47,5 +49,5 @@ PLATFORMS
 DEPENDENCIES
   ffi (~> 1.9.10)
   fpm (~> 1.11.0)
-  nokogiri (~> 1.6)
+  nokogiri (~> 1.13)
   rake (~> 12.2.1)
