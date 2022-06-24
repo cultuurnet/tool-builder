@@ -1,7 +1,7 @@
 package_namespace = File.basename(File.expand_path("..", __FILE__)).to_sym
 
 name = 'jenkins-cli'
-download_host = "http://mirrors.jenkins.io"
+download_host = "https://mirrors.jenkins.io"
 
 namespace package_namespace do
   desc "Download the necessary sources for the version specified."
