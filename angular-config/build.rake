@@ -15,7 +15,7 @@ namespace "#{namespace}" do
   end
 
   desc "Create a debian package from the binaries."
-  task :build_package => [:build] do |task|
+  task :build_artifact => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       system("cd angular_config; gem build angular_config.gemspec")
       system("cd angular_config; fpm -s gem -t deb -p .. angular_config*.gem")

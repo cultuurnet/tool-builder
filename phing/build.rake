@@ -20,12 +20,12 @@ namespace "#{namespace}" do
   end
 
   desc "Create a debian package from the binaries."
-  task :build_package => [:build] do |task|
+  task :build_artifact => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       version = `php pkg/phing -v`.split(' ')[1]
-      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n phing -d 'php5-cli | php5.6-cli | php7.1-cli | php7.4-cli' --prefix /usr/bin \
-        --license 'Apache-2.0' -m 'Infra CultuurNet <infra@cultuurnet.be>' \
-        --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
+      system("fpm -s dir -t deb -a all -C pkg -v #{version} -n phing -d 'php7.1-cli | php7.4-cli' --prefix /usr/bin \
+        --license 'Apache-2.0' -m 'Infra publiq <infra@publiq.be>' \
+        --url 'https://www.publiq.be' --vendor 'publiq VZW' \
         --description 'PHing Is Not GNU make; it is a PHP project build system or build tool based on Apache Ant.' .")
     }
   end

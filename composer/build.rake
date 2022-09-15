@@ -22,19 +22,19 @@ namespace "#{namespace}" do
   end
 
   desc "Create a debian package from the binaries."
-  task :build_package => [:build] do |task|
+  task :build_artifact => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       version_composer1 = `pkg/composer1/composer1 --no-ansi -V`.split[2]
       version_composer2 = `pkg/composer2/composer2 --no-ansi -V`.split[2]
       system("fpm -s dir -t deb -a all -C pkg/composer1 -v #{version_composer1} \
-        -n composer1 -d 'php5-cli | php5.6-cli | php7.1-cli | php7.4-cli' \
+        -n composer1 -d 'php7.1-cli | php7.4-cli' \
         --after-install postinst/composer1 --before-remove prerm/composer1 \
         --license 'Apache-2.0' -m 'Infra publiq <infra@publiq.be>' \
         --url 'https://www.publiq.be' --vendor 'publiq VZW' --prefix /usr/bin \
         --description 'Composer is a dependency manager tracking local dependencies of your projects and libraries' \
         --provides composer .")
       system("fpm -s dir -t deb -a all -C pkg/composer2 -v #{version_composer2} \
-        -n composer2 -d 'php5-cli | php5.6-cli | php7.1-cli | php7.4-cli' \
+        -n composer2 -d 'php7.1-cli | php7.4-cli' \
         --after-install postinst/composer2 --before-remove prerm/composer2 \
         --license 'Apache-2.0' -m 'Infra publiq <infra@publiq.be>' \
         --url 'https://www.publiq.be' --vendor 'publiq VZW' --prefix /usr/bin \

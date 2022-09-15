@@ -25,7 +25,7 @@ namespace "#{namespace}" do
   end
 
   desc "Create a debian package from the binaries."
-  task :build_package => [:build] do |task|
+  task :build_artifact => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       system("fpm -s dir -t deb -n #{name} -v #{version} \
         -m 'Infra CultuurNet <infra@cultuurnet.be>' -a all \

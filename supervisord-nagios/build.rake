@@ -14,7 +14,7 @@ namespace "#{namespace}" do
   end
 
   desc "Create a debian package from the binaries."
-  task :build_package => [:build] do |task|
+  task :build_artifact => [:build] do |task|
     release = `lsb_release -r -s`
     FileUtils.cd task.name.split(':')[0] {
       system("fpm -s python -t deb --iteration 1~ubuntu#{release}\

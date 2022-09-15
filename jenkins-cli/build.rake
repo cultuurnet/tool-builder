@@ -27,7 +27,7 @@ namespace package_namespace do
   end
 
   desc "Create a debian package from the binaries."
-  task :build_package => [:build] do |task|
+  task :build_artifact => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       version = `ls WEB-INF/lib`[/cli\-(.+)\.jar/, 1]
       iteration = `date '+%Y%m%d%H%M%S'`.chomp

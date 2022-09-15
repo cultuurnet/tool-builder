@@ -17,7 +17,7 @@ namespace "#{namespace}" do
   end
 
   desc "Create a debian package from the binaries."
-  task :build_package => [:build] do |task|
+  task :build_artifact => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       version = `icinga2-check_systemd_service/check_systemd_service -V`[/^v(.*)$/, 1]
       system("fpm -s dir -t deb -n icinga2-plugins-systemd-service -a all \

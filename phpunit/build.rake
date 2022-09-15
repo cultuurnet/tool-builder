@@ -20,13 +20,13 @@ namespace "#{namespace}" do
   end
 
   desc "Create a debian package from the binaries."
-  task :build_package => [:build] do |task|
+  task :build_artifact => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       version = `php pkg/phpunit --version`.split(' ')[1].chomp
       system("fpm -s dir -t deb -a all -C pkg -v #{version} -n phpunit \
-        -d 'php5.6-cli | php7.0-cli | php7.1-cli' --prefix /usr/bin \
-        --license 'Apache-2.0' -m 'Infra CultuurNet <infra@cultuurnet.be>' \
-        --url 'http://www.cultuurnet.be' --vendor 'CultuurNet Vlaanderen' \
+        -d 'php7.4-cli' --prefix /usr/bin \
+        --license 'Apache-2.0' -m 'Infra publiq <infra@publiq.be>' \
+        --url 'https://www.publiq.be' --vendor 'publiq VZW' \
         --description 'PHP Unit testing framework.' .")
     }
   end

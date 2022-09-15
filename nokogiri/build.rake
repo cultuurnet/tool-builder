@@ -14,7 +14,7 @@ namespace "#{namespace}" do
   end
 
   desc "Create a debian package from the binaries."
-  task :build_package => [:build] do |task|
+  task :build_artifact => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.1.0 mini_portile2")
       system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.7.2 nokogiri")

@@ -18,7 +18,7 @@ namespace "#{namespace}" do
   end
 
   desc "Create a debian package from the binaries."
-  task :build_package => [:build] do |task|
+  task :build_artifact => [:build] do |task|
     require 'time'
 
     FileUtils.cd task.name.split(':')[0] do

@@ -18,11 +18,11 @@ You can just run `rake` to display all possible targets.
 The tools each have the following targets available:
 * download
 * build
-* build_package
+* build_artifact
 * clean
 
-You probably just need the `build_package` target, which also runs the other
+You probably just need the `build_artifact` target, which also runs the other
 tasks. For example, to build mysql-connector-java:
 ```ruby
-rake mysql-connector-java:build_package
+rake mysql-connector-java:build_artifact
 ```

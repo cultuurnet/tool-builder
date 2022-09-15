@@ -1,4 +1,5 @@
 namespace = File.basename(File.expand_path("..", __FILE__))
+version_string = (ENV['version'].nil? or ENV['version'].empty?) ? '' : "-v #{ENV['version']}"
 
 namespace "#{namespace}" do
   desc "Download the necessary sources for the version specified."
@@ -16,9 +17,7 @@ namespace "#{namespace}" do
   desc "Create a debian package from the binaries."
   task :build_artifact => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
-      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.11.1 multi_json")
-      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 1.0.2 jmespath")
-      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby -v 2.1.2 aws-sdk-core")
+      system("fpm -s gem -t deb -m 'Infra publiq <infra@publiq.be>' -d ruby #{version_string} fpm")
     }
   end
 
