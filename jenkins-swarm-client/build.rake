@@ -40,9 +40,7 @@ namespace package_namespace do
   task :build_artifact => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       version = `ls swarm-client-*.jar`[/swarm\-client\-(.+)\.jar/, 1]
-      iteration = `date '+%Y%m%d%H%M%S'`.chomp
-      system("fpm -s dir -t deb -a all -C pkg -n #{name} -v #{version} \
-        --iteration #{iteration} --prefix / \
+      system("fpm -s dir -t deb -a all -C pkg -n #{name} -v #{version} --prefix / \
         --after-install postinst --before-remove prerm \
         -x upstart --deb-upstart upstart/jenkins-swarm-client \
         -x systemd --deb-systemd systemd/jenkins-swarm-client.service \
