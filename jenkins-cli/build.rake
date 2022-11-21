@@ -30,11 +30,9 @@ namespace package_namespace do
   task :build_artifact => [:build] do |task|
     FileUtils.cd task.name.split(':')[0] {
       version = `ls WEB-INF/lib`[/cli\-(.+)\.jar/, 1]
-      iteration = `date '+%Y%m%d%H%M%S'`.chomp
-      system("fpm -s dir -t deb -a all -C pkg -n #{name} -v #{version} \
-        --iteration #{iteration} --prefix / \
+      system("fpm -s dir -t deb -a all -C pkg -n #{name} -v #{version} --prefix / \
         --license 'Apache-2.0' -m 'Infra publiq <infra@publiq.be>' \
-        --url 'https://www.publiq.be' --vendor 'publiq vzw' \
+        --url 'https://www.publiq.be' --vendor 'publiq VZW' \
         --description 'Commandline interface to Jenkins' .")
     }
   end
