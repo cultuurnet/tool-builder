@@ -1,3 +1,0 @@
-#!/bin/sh
-
-ln -s /opt/elasticdump/node_modules/elasticdump/bin/elasticdump /usr/local/bin/elasticdump
